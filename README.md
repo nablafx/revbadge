@@ -42,7 +42,7 @@ The first required argument acts as the label string inside a high-visibility, s
 #### Syntax Template:
 ```latex
 \imeantinline[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Badge Tag Label}{label:unique_key}{Modified Inline Text}
-
+```
 ### 3. Refer the highlight block label
 using `\cref{}`
 ```latex
