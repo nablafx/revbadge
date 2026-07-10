@@ -1,7 +1,7 @@
 # `revbadge`
 
 **Version:** `1.0`  
-**Date:** `10/07/2026`  
+**Release Date:** `10/07/2026`  
 
 ---
 
