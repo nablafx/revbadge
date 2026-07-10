@@ -1,9 +1,17 @@
 # `revbadge`
+Multi-color highlight builder featuring block and inline revision badges.
 
 **Version:** `1.0`  
 **Release Date:** `10/07/2026`  
 
 ---
+
+The revbadge package provides an elegant, column-safe framework designed specifically for tracking major revisions and minor modifications in academic manuscripts (such as those using the IEEEtran layout).
+
+The package features a dual-component architecture: the revbadge block environment for handling long paragraphs, multi-line equations, lists, and sections; and the \revbadgeinline macro for executing tight, mid-sentence word corrections without disrupting standard line spacing. Both components feature a dynamic colored badge mechanism that labels modifications on the fly.
+
+To simplify linking text revisions directly back to a peer-review response matrix or letter, the package provides native, automated integration with hyperref and cleveref under a unified "highlight" reference counter. Additionally, revbadge comes pre-packaged with a vibrant, 24-theme color palette accessible via highly memorable 4-letter macro color identifiers (e.g., blue, gren, orng, purp, ylow, grey).
+
 
 ## Color Scheme Palette (24 Themes)
 
