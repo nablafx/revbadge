@@ -1,0 +1,68 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{imeantit}[2026/07/10 Custom Highlighting for Academic Revisions]
+
+\RequirePackage{xcolor}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\RequirePackage{hyperref}
+\RequirePackage{cleveref}
+
+% =========================================================================
+% imeantit: COLOR PALETTE (24 Unique Themes)
+% =========================================================================
+\definecolor{blue}{HTML}{007399}  \definecolor{blueb}{HTML}{F2F9FC}
+\definecolor{orng}{HTML}{D9822B}  \definecolor{orngb}{HTML}{FFFBF2}
+\definecolor{gren}{HTML}{2F855A}  \definecolor{grenb}{HTML}{F0FDF4}
+\definecolor{purp}{HTML}{6B46C1}  \definecolor{purpb}{HTML}{F5F3FF}
+\definecolor{grey}{HTML}{4A5568}  \definecolor{greyb}{HTML}{F7FAFC}
+\definecolor{ylow}{HTML}{B7950B}  \definecolor{ylowb}{HTML}{FEF9E7}
+\definecolor{cyan}{HTML}{00A3C4}  \definecolor{cyanb}{HTML}{E6FCFF}
+\definecolor{redx}{HTML}{C53030}  \definecolor{redxb}{HTML}{FFF5F5}
+\definecolor{pink}{HTML}{B83280}  \definecolor{pinkb}{HTML}{FFF5F7}
+\definecolor{brow}{HTML}{845EF7}  \definecolor{browb}{HTML}{F3F0FF}
+\definecolor{lime}{HTML}{5C940E}  \definecolor{limeb}{HTML}{F4FCE3}
+\definecolor{teal}{HTML}{0C8599}  \definecolor{tealb}{HTML}{E3FAFC}
+\definecolor{sage}{HTML}{708090}  \definecolor{sageb}{HTML}{F0F2F5}
+\definecolor{plum}{HTML}{862E9C}  \definecolor{plumb}{HTML}{FAEDFF}
+\definecolor{rust}{HTML}{C92A2A}  \definecolor{rustb}{HTML}{FFE3E3}
+\definecolor{jade}{HTML}{087F5B}  \definecolor{jadeb}{HTML}{E6FCF5}
+\definecolor{gold}{HTML}{C17400}  \definecolor{goldb}{HTML}{FFF9DB}
+\definecolor{navy}{HTML}{1A365D}  \definecolor{navyb}{HTML}{EBF8FF}
+\definecolor{wine}{HTML}{721C24}  \definecolor{wineb}{HTML}{F8D7DA}
+\definecolor{clay}{HTML}{A26442}  \definecolor{clayb}{HTML}{F9F1EC}
+\definecolor{aqua}{HTML}{0B7285}  \definecolor{aquab}{HTML}{E3FAFC}
+\definecolor{char}{HTML}{2D3748}  \definecolor{charb}{HTML}{EDF2F7}
+\definecolor{rose}{HTML}{9C36B5}  \definecolor{roseb}{HTML}{FDF2FF}
+\definecolor{sand}{HTML}{877A5E}  \definecolor{sandb}{HTML}{F6F5F2}
+
+% =========================================================================
+% imeantit: ENVIRONMENT DEFINITION (Environment: 'imeant' -> Reference: 'highlight')
+% =========================================================================
+\newcounter{highlight}
+
+% Configure cleveref to output "highlight" when referencing this counter type
+\crefname{highlight}{highlight}{highlight}
+\Crefname{highlight}{Highlight}{Highlights}
+
+% --- Block Environment: imeant ---
+% Named 'imeant', uses the 'highlight' counter, and registers as 'highlight' for cleveref
+\newtcolorbox[use counter=highlight, crefname={highlight}{highlight}]{imeant}[3][colframe=blue, colback=blueb]{%
+    enhanced, breakable, before skip=15pt, after skip=15pt,
+    boxrule=0.5pt, leftrule=4pt, arc=4pt, top=12pt, bottom=10pt, left=10pt, right=10pt,
+    #1, 
+    attach boxed title to top left={xshift=8pt, yshift=-10pt, yshifttext=-5pt},
+    fonttitle=\bfseries\small\sffamily, coltitle=white, title={#2},
+    boxed title style={boxrule=0pt, arc=3pt, top=3pt, bottom=3pt, left=6pt, right=6pt, colback=tcbcolframe, colframe=tcbcolframe},
+    after upper={\label{#3}} 
+}
+
+% --- Inline Macro with Highlighted Label Badge ---
+\newcommand{\imeantinline}[4][colframe=blue, colback=blueb]{%
+    \refstepcounter{highlight}%
+    \tcbox[enhanced, on line, boxrule=0.5pt, arc=3pt, 
+           top=0pt, bottom=0pt, left=0pt, right=4pt,
+           boxsep=0pt, fontupper=\small, #1,
+           after upper={\label{#3}}]{%
+           \colorbox{tcbcolframe}{\color{white}\bfseries\sffamily\scriptsize\strut\,\,#2\,\,}\,\,\textbf{#4}%
+    }%
+}
