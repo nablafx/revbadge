@@ -1,5 +1,8 @@
+% Version: 1.0
+% Updated 10/07/2026
+
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{imeantit}[2026/07/10 Custom Highlighting for Academic Revisions]
+\ProvidesPackage{revbadge}[Custom Highlighting for Academic Revisions]
 
 \RequirePackage{xcolor}
 \RequirePackage{tcolorbox}
@@ -8,7 +11,7 @@
 \RequirePackage{cleveref}
 
 % =========================================================================
-% imeantit: COLOR PALETTE (24 Unique Themes)
+% revbadge: COLOR PALETTE (24 Unique Themes)
 % =========================================================================
 \definecolor{blue}{HTML}{007399}  \definecolor{blueb}{HTML}{F2F9FC}
 \definecolor{orng}{HTML}{D9822B}  \definecolor{orngb}{HTML}{FFFBF2}
@@ -36,30 +39,29 @@
 \definecolor{sand}{HTML}{877A5E}  \definecolor{sandb}{HTML}{F6F5F2}
 
 % =========================================================================
-% imeantit: ENVIRONMENT DEFINITION (Environment: 'imeant' -> Reference: 'highlight')
+% revbadge: ENVIRONMENT DEFINITION
 % =========================================================================
-\newcounter{highlight}
+\newcounter{revbadge}
 
-% Configure cleveref to output "highlight" when referencing this counter type
-\crefname{highlight}{highlight}{highlight}
-\Crefname{highlight}{Highlight}{Highlights}
+% --- print "highlight"  in the PDF text ---
+\crefname{revbadge}{highlight}{highlights}
+\Crefname{revbadge}{Highlight}{Highlights}
 
-% --- Block Environment: imeant ---
-% Named 'imeant', uses the 'highlight' counter, and registers as 'highlight' for cleveref
-\newtcolorbox[use counter=highlight, crefname={highlight}{highlight}]{imeant}[3][colframe=blue, colback=blueb]{%
+% --- Block Environment ---
+\newtcolorbox[use counter=revbadge]{revbadge}[3][colframe=blue, colback=blueb]{%
     enhanced, breakable, before skip=15pt, after skip=15pt,
     boxrule=0.5pt, leftrule=4pt, arc=4pt, top=12pt, bottom=10pt, left=10pt, right=10pt,
-    #1, 
+    #1,
     attach boxed title to top left={xshift=8pt, yshift=-10pt, yshifttext=-5pt},
     fonttitle=\bfseries\small\sffamily, coltitle=white, title={#2},
     boxed title style={boxrule=0pt, arc=3pt, top=3pt, bottom=3pt, left=6pt, right=6pt, colback=tcbcolframe, colframe=tcbcolframe},
-    after upper={\label{#3}} 
+    after upper={\label{#3}}
 }
 
 % --- Inline Macro with Highlighted Label Badge ---
-\newcommand{\imeantinline}[4][colframe=blue, colback=blueb]{%
-    \refstepcounter{highlight}%
-    \tcbox[enhanced, on line, boxrule=0.5pt, arc=3pt, 
+\newcommand{\revbadgeinline}[4][colframe=blue, colback=blueb]{%
+    \refstepcounter{revbadge}%
+    \tcbox[enhanced, on line, boxrule=0.5pt, arc=3pt,
            top=0pt, bottom=0pt, left=0pt, right=4pt,
            boxsep=0pt, fontupper=\small, #1,
            after upper={\label{#3}}]{%

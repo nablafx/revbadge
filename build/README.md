@@ -1,10 +1,11 @@
-# `imeantit`
+# `revbadge`
 
+**Version:** `1.0`  
+**Date:** `10/07/2026`  
 
 ---
 
-
-## 🎨 Color Scheme Palette (24 Themes)
+## Color Scheme Palette (24 Themes)
 
 Each color uses a 4-letter identifier for the frame boundary/badge (`XXXX`) and appends a `b` for its matching light container background (`XXXXb`).
 
@@ -24,27 +25,28 @@ Each color uses a 4-letter identifier for the frame boundary/badge (`XXXX`) and 
 
 ## 🛠️ Usage
 
-### 1. The Block Container (`imeant` Environment)
+### 1. The Block Container (`revbadge` Environment)
 Designed for multi-line edits, math, figures, lists, or large rewritten paragraphs.
 
 #### Syntax Template:
 ```latex
-\begin{imeant}[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Badge Title}{label:unique_key}
+\begin{revbadge}[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Badge Title}{label:unique_key}
     Content space...
-\end{imeant}
+\end{revbadge}
 ```
-
-### 2. Micro-Edit Snippets (`\imeantinline` Command)
-Designed to highlight mid-paragraph text modifications, tiny vocabulary updates, or localized mathematical symbols without breaking text wrapping or introducing ugly vertical spacing gaps. 
+### 2. Micro-Edit Snippets (`\revbadgeinline` Command)
+Designed to highlight mid-paragraph text modifications, tiny vocabulary updates, or localized mathematical symbols without breaking text wrapping or introducing ugly vertical spacing gaps.
 
 The first required argument acts as the label string inside a high-visibility, solid-colored tag badge.
 
 #### Syntax Template:
 ```latex
-\imeantinline[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Badge Tag Label}{label:unique_key}{Modified Inline Text}
+\revbadgeinline[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Badge Tag Label}{label:unique_key}{Modified Inline Text}
 ```
+
 ### 3. Refer the highlight block label
 using `\cref{}`
+#### Syntax Template:
 ```latex
 \cref{rev:baseline_clarity}
 ```

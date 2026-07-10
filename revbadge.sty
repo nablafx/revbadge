@@ -1,5 +1,8 @@
+% Version: 1.0
+% Updated 10/07/2026
+
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{imeantit}[2026/07/10 Custom Highlighting for Academic Revisions]
+\ProvidesPackage{revbadge}[Custom Highlighting for Academic Revisions]
 
 \RequirePackage{xcolor}
 \RequirePackage{tcolorbox}
@@ -8,7 +11,7 @@
 \RequirePackage{cleveref}
 
 % =========================================================================
-% imeantit: COLOR PALETTE (24 Unique Themes)
+% revbadge: COLOR PALETTE (24 Unique Themes)
 % =========================================================================
 \definecolor{blue}{HTML}{007399}  \definecolor{blueb}{HTML}{F2F9FC}
 \definecolor{orng}{HTML}{D9822B}  \definecolor{orngb}{HTML}{FFFBF2}
@@ -36,13 +39,16 @@
 \definecolor{sand}{HTML}{877A5E}  \definecolor{sandb}{HTML}{F6F5F2}
 
 % =========================================================================
-% imeantit: ENVIRONMENT DEFINITION (Pure 'imeant' Tracking)
+% revbadge: ENVIRONMENT DEFINITION
 % =========================================================================
-\newcounter{imeant}
-\crefname{imeant}{imeant}{imeant}
+\newcounter{revbadge}
 
-% --- Block Environment renamed to imeant ---
-\newtcolorbox[use counter=imeant]{imeant}[3][colframe=blue, colback=blueb]{%
+% --- print "highlight"  in the PDF text ---
+\crefname{revbadge}{highlight}{highlights}
+\Crefname{revbadge}{Highlight}{Highlights}
+
+% --- Block Environment ---
+\newtcolorbox[use counter=revbadge]{revbadge}[3][colframe=blue, colback=blueb]{%
     enhanced, breakable, before skip=15pt, after skip=15pt,
     boxrule=0.5pt, leftrule=4pt, arc=4pt, top=12pt, bottom=10pt, left=10pt, right=10pt,
     #1,
@@ -52,9 +58,9 @@
     after upper={\label{#3}}
 }
 
-% --- Upgraded Inline Macro with Highlighted Label Badge ---
-\newcommand{\imeantinline}[4][colframe=blue, colback=blueb]{%
-    \refstepcounter{imeant}%
+% --- Inline Macro with Highlighted Label Badge ---
+\newcommand{\revbadgeinline}[4][colframe=blue, colback=blueb]{%
+    \refstepcounter{revbadge}%
     \tcbox[enhanced, on line, boxrule=0.5pt, arc=3pt,
            top=0pt, bottom=0pt, left=0pt, right=4pt,
            boxsep=0pt, fontupper=\small, #1,

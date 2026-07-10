@@ -1,0 +1,77 @@
+\documentclass[10pt,journal,compsoc,twocolumn]{IEEEtran}
+\usepackage{lipsum}
+\usepackage{revbadge} % Loads your package locally
+
+\begin{document}
+
+\title{The \texttt{revbadge} Package: Custom Highlighting for Academic Revisions}
+\author{Zhang Fu}
+\maketitle
+
+\begin{abstract}
+This document serves as both the official user manual and a compilation demonstration for the \texttt{revbadge} package. We present examples of how to address different reviewers using distinct color schemes without breaking tough, two-column academic structures.
+\end{abstract}
+
+\section{Introduction \& Package Purpose}
+With the increasing rigor of peer-review processes, keeping track of manuscript modifications has become crucial. The \texttt{revbadge} package provides a dual-component architecture consisting of the multi-line \texttt{revbadge} block environment and the \texttt{\textbackslash revbadgeinline} macro for tight mid-sentence updates.
+
+For example, a minor structural adjustment can be highlighted as an \revbadgeinline[colframe=gold, colback=purpb]{1}{rev:short}{structural block} modification, which automatically links to your response letters via \texttt{cleveref}.
+
+\section{Core Commands \& Environments}
+
+\subsection{Inline Edits}
+Reviewer 3 pointed out a technical term error. We have corrected the phrase
+\revbadgeinline[colframe=purp, colback=purpb]{2}{rev:short2}{stochastic descent}
+to match their preferred domain nomenclature. As shown by this example, it handles micro-edits gracefully without breaking paragraph rendering or line spacing.
+
+\subsection{Block Level Revisions}
+For larger text changes or entire sections, use the \texttt{revbadge} environment:
+
+\begin{revbadge}[colframe=gren, colback=grenb]{3}{rev:baseline_clarity}
+\subsubsection{Methodology Updates}
+Our core algorithm relies on a highly modular pipeline. Reviewer 1 pointed out a structural flaw in our original baseline model equation. Consequently, we have revised the mathematical formulation to ensure convexity.
+\end{revbadge}
+
+\subsection{Nested Frameworks and Mathematics}
+The environment naturally preserves mathematical structures inside columns without spacing bleed and allows for internal nesting:
+
+\begin{revbadge}{4}{rev:math_fix}
+    We update our primary objective function to include a regularization parameter $\lambda$. The new optimization problem is formulated as follows:
+
+    \begin{revbadge}{4.1}{rev:math_fix_2}
+    \begin{equation}
+        \min_{\theta} \mathcal{L}(\theta) + \lambda \|\theta\|_2^2
+    \end{equation}
+    \end{revbadge}
+    This formulation guarantees a unique global minimum under standard Lipschitz continuity conditions.
+\end{revbadge}
+
+As demonstrated above, the mathematical rigor is preserved, and the box automatically scales to fit perfectly within a single column.
+
+\subsection{Table Integration}
+Reviewer 1 requested updated evaluation metrics in our comparative analysis. As shown in Table~\ref{tab:metrics}, we can seamlessly embed tracking badges directly inside tabular environments to point out specific data corrections.
+
+\begin{table}[htbp]
+\caption{Baseline Performance Metrics Comparison}
+\label{tab:metrics}
+\centering
+\begin{tabular}{lccc}
+\hline
+\textbf{Method} & \textbf{Accuracy (\%)} & \textbf{F1-Score} & \textbf{Latency (ms)} \\ \hline
+ResNet-50       & 76.2                   & 0.74              & 12.5                  \\
+ViT-Base        & 81.4                   & 0.80              & 24.1                  \\
+\textbf{Ours}   & \revbadgeinline[colframe=cyan, colback=cyanb]{1.1}{rev:table_update}{\textbf{84.9}} & \textbf{0.83}     & \textbf{18.4}         \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Custom Layout Formatting}
+Reviewer 2 required an explicit declaration of our hardware execution environment:
+\begin{revbadge}[colframe=ylow, colback=ylowb, top=4pt, bottom=4pt]{Hardware Specs}{rev:twolines}
+    All evaluations executed natively on an NVIDIA H100 GPU cluster. \\
+    The total execution window spanned exactly 48 continuous hours.
+\end{revbadge}
+
+\section{Cross-Referencing Tracker}
+Because the package automatically binds internal counters to \texttt{cleveref}, referencing your edits is seamless. For example, \verb|\cref{rev:short}| outputs as \cref{rev:short}, \verb|\cref{rev:baseline_clarity}| yields \cref{rev:baseline_clarity}, the tabular adjustment \verb|\cref{rev:table_update}| points to \cref{rev:table_update}, and the nested math formula \verb|\cref{rev:math_fix_2}| maps cleanly to \cref{rev:math_fix_2}.
+
+\end{document}
