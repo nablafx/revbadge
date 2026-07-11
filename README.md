@@ -33,7 +33,7 @@ Each color uses a 4-letter identifier for the frame boundary/badge (`XXXX`) and 
 
 ## 🛠️ Usage
 
-### 1. The Block Container (`revbadge` Environment)
+### 1. The Block Container (`revbadge` and `revbadgemultiline` Environment)
 Designed for multi-line edits, math, figures, lists, or large rewritten paragraphs.
 
 #### Syntax Template:
@@ -44,6 +44,7 @@ Designed for multi-line edits, math, figures, lists, or large rewritten paragrap
 ```
 
 Sometimes you might need to write some long multi-line texts in the badge label, in that case, use 
+
 ```latex
 \begin{revbadgemultiline}[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Some very very very very long texts}{label:unique_key}
     Content space...
