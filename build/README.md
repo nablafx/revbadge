@@ -6,7 +6,7 @@ Multi-color highlight builder featuring block and inline revision badges.
 
 ---
 
-The revbadge package provides an elegant, column-safe framework designed specifically for tracking major revisions and minor modifications in academic manuscripts. As well as handy highlighting utilities.
+The revbadge package provides an elegant, column-safe framework designed specifically for tracking major revisions and minor modifications in academic manuscripts. This package can also be used as a handy highlighting tool.
 
 The `revbadge` block environment for handling long paragraphs, multi-line equations, lists, and sections; `revbadgemultiline` shares the same propose but allow you to build multi-line badge label;  and the `\revbadgeinline` macro for executing tight, mid-sentence word corrections without disrupting standard line spacing. Both components feature a dynamic colored badge mechanism that labels modifications on the fly.
 
