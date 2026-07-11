@@ -1,14 +1,14 @@
 # `revbadge`
 Multi-color highlight builder featuring block and inline revision badges.
 
-**Version:** `1.0`  
-**Release Date:** `10/07/2026`  
+**Version:** `1.1`  
+**Release Date:** `11/07/2026`  
 
 ---
 
 The revbadge package provides an elegant, column-safe framework designed specifically for tracking major revisions and minor modifications in academic manuscripts.
 
-The package features a dual-component architecture: the revbadge block environment for handling long paragraphs, multi-line equations, lists, and sections; and the \revbadgeinline macro for executing tight, mid-sentence word corrections without disrupting standard line spacing. Both components feature a dynamic colored badge mechanism that labels modifications on the fly.
+The `revbadge` block environment for handling long paragraphs, multi-line equations, lists, and sections; `revbadgemultiline` shares the same propose but allow you to build multi-line badge label;  and the `\revbadgeinline` macro for executing tight, mid-sentence word corrections without disrupting standard line spacing. Both components feature a dynamic colored badge mechanism that labels modifications on the fly.
 
 To simplify linking text revisions directly back to a peer-review response matrix or letter, the package provides native, automated integration with hyperref and cleveref under a unified "highlight" reference counter. Additionally, revbadge comes pre-packaged with a vibrant, 24-theme color palette accessible via highly memorable 4-letter macro color identifiers (e.g., blue, gren, orng, purp, ylow, grey).
 
@@ -20,11 +20,11 @@ Each color uses a 4-letter identifier for the frame boundary/badge (`XXXX`) and 
 | Theme Group | Frame Tag (`#1`) | Background Tag | Suggested Usage |
 | :--- | :---: | :---: | :--- |
 | **Standard Core** | `blue` | `blueb` | Default edits / General tracking |
-| | `orng` | `orngb` | High Priority Alerts / Data fixes |
-| | `gren` | `grenb` | Reviewer 1 Responses |
-| | `purp` | `purpb` | Reviewer 2 Responses |
-| | `grey` | `greyb` | Typos / Minor grammar fixes |
-| | `ylow` | `ylowb` | Reference / Bibliography updates |
+| - | `orng` | `orngb` | High Priority Alerts / Data fixes |
+| - | `gren` | `grenb` | Reviewer 1 Responses |
+| - | `purp` | `purpb` | Reviewer 2 Responses |
+| - | `grey` | `greyb` | Typos / Minor grammar fixes |
+| - | `ylow` | `ylowb` | Reference / Bibliography updates |
 | **Modern Tech** | `cyan`, `redx`, `pink`, `brow`, `lime`, `teal` | `...b` | Specialized domain or reviewer tracks |
 | **Pastel Earth**| `sage`, `plum`, `rust`, `jade`, `gold`, `navy` | `...b` | Soft contrast layouts |
 | **High Contrast**| `wine`, `clay`, `aqua`, `char`, `rose`, `sand` | `...b` | Deep accents / Subtle text offsets |
