@@ -42,6 +42,16 @@ Designed for multi-line edits, math, figures, lists, or large rewritten paragrap
     Content space...
 \end{revbadge}
 ```
+
+Sometimes you might need to write some long multi-line texts in the badge label, in that case, use 
+
+```latex
+\begin{revbadgemultiline}[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Some very very very very long texts}{label:unique_key}
+    Content space...
+\end{revbadgemultiline}
+```
+
+
 ### 2. Micro-Edit Snippets (`\revbadgeinline` Command)
 Designed to highlight mid-paragraph text modifications, tiny vocabulary updates, or localized mathematical symbols without breaking text wrapping or introducing ugly vertical spacing gaps.
 
