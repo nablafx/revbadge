@@ -1,10 +1,25 @@
+% Package: revbadge
+% Version: 1.1
+% Date: 11/07/2026
+
 \documentclass[10pt,journal,compsoc,twocolumn]{IEEEtran}
 \usepackage{lipsum}
 \usepackage{revbadge} % Loads your package locally
 
+% For placeholder figure (optional – not strictly needed if using \fbox)
+\usepackage{graphicx}
+
+% --- Allow line breaks in inline code examples ---
+\usepackage{url}
+% Define break points for LaTeX command characters
+\def\UrlBreaks{%
+  \do\-\do\.\do\_\do\~\do\|\do\\\do\{\do\}\do\[\do\]\do\(\do\)%
+}
+
 \begin{document}
 
-\title{The \texttt{revbadge} Package: Custom Highlighting for Academic Revisions}
+\title{The \texttt{revbadge} Package \\ Custom Highlighting for Academic Revisions\\
+\vspace{5px} \large Version 1.0 --- Release Date: 10/07/2026}
 \author{Zhang Fu}
 \maketitle
 
@@ -13,32 +28,62 @@ This document serves as both the official user manual and a compilation demonstr
 \end{abstract}
 
 \section{Introduction \& Package Purpose}
-With the increasing rigor of peer-review processes, keeping track of manuscript modifications has become crucial. The \texttt{revbadge} package provides a dual-component architecture consisting of the multi-line \texttt{revbadge} block environment and the \texttt{\textbackslash revbadgeinline} macro for tight mid-sentence updates.
-
-For example, a minor structural adjustment can be highlighted as an \revbadgeinline[colframe=gold, colback=purpb]{1}{rev:short}{structural block} modification, which automatically links to your response letters via \texttt{cleveref}.
+With the increasing rigor of peer-review processes, keeping track of manuscript modifications has become crucial. The \texttt{revbadge} package provides a **triple‑component** architecture:
+\begin{itemize}
+  \item The inline macro \texttt{\textbackslash revbadgeinline} for short, mid‑sentence edits.
+  \item The block environment \texttt{revbadge} for larger paragraphs or whole sections.
+  \item The multi‑line environment \texttt{revbadgemultiline}, which accepts line breaks in the badge label and uses a smaller font to minimise visual impact.
+\end{itemize}
+All three share the same colour palette and automatic cross‑referencing via \texttt{cleveref}.
 
 \section{Core Commands \& Environments}
 
 \subsection{Inline Edits}
+\noindent
+\textbf{Command used:} \path|\revbadgeinline[colframe=purp, colback=purpb]{2}{rev:short}{stochastic descent}|
+
 Reviewer 3 pointed out a technical term error. We have corrected the phrase
-\revbadgeinline[colframe=purp, colback=purpb]{2}{rev:short2}{stochastic descent}
+\revbadgeinline[colframe=purp, colback=purpb]{1}{rev:short}{stochastic descent}
 to match their preferred domain nomenclature. As shown by this example, it handles micro-edits gracefully without breaking paragraph rendering or line spacing.
 
 \subsection{Block Level Revisions}
+\noindent
+\textbf{Environment used:} \texttt{revbadge}
+
 For larger text changes or entire sections, use the \texttt{revbadge} environment:
 
-\begin{revbadge}[colframe=gren, colback=grenb]{3}{rev:baseline_clarity}
 \subsubsection{Methodology Updates}
+Fusce malesuada ipsum erat, nec imperdiet felis accumsan eu. Etiam et ultricies eros. Morbi laoreet viverra mattis. Nulla facilisi. Nam convallis, nisl eu luctus interdum, erat sapien imperdiet enim, sed rhoncus turpis turpis eget massa. Ut faucibus ex non odio iaculis, vel semper odio consectetur. Nunc lectus orci,
+
+% First block example
+\noindent
+\textbf{Command:} \path|\begin{revbadge}[colframe=aqua, colback=aquab]{1}{rev:theory} ... \end{revbadge}|
+\begin{revbadge}[colframe=aqua, colback=aquab]{2}{rev:theory}
+maximus ac pretium id, porta quis est. Ut ante dolor, semper vitae mauris nec, finibus cursus mauris. Aliquam tincidunt tellus lorem, vitae vulputate magna cursus sit amet. Phasellus ante magna, consequat a nunc id,
+\end{revbadge}
+malesuada porta est. Quisque lacinia est sed iaculis ornare. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec lobortis eu mi sit amet lacinia.
+
+% Second block example with longer title
+\noindent
+\textbf{Command:} \path|\begin{revbadge}[colframe=gren, colback=grenb]{What do you mean by this? }{rev:baseline_clarity} ... \end{revbadge}|
+\begin{revbadge}[colframe=gren, colback=grenb]{What do you mean by this? }{rev:baseline_clarity}
 Our core algorithm relies on a highly modular pipeline. Reviewer 1 pointed out a structural flaw in our original baseline model equation. Consequently, we have revised the mathematical formulation to ensure convexity.
 \end{revbadge}
 
+Fusce malesuada ipsum erat, nec imperdiet felis accumsan eu. Etiam et ultricies eros. Morbi laoreet viverra mattis. Nulla facilisi. Nam convallis, nisl eu luctus interdum, erat sapien imperdiet enim, sed rhoncus turpis turpis eget massa. Ut faucibus ex non odio iaculis, vel semper odio consectetur. Nunc lectus orci, maximus ac pretium id, porta quis est. Ut ante dolor, semper vitae mauris nec, finibus cursus mauris. Aliquam tincidunt tellus lorem, vitae vulputate magna cursus sit amet. Phasellus ante magna, consequat a nunc id, malesuada porta est. Quisque lacinia est sed iaculis ornare. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec lobortis eu mi sit amet lacinia.
+
 \subsection{Nested Frameworks and Mathematics}
+\noindent
+\textbf{Command:} nesting \texttt{revbadge} environments.
+
 The environment naturally preserves mathematical structures inside columns without spacing bleed and allows for internal nesting:
 
-\begin{revbadge}{4}{rev:math_fix}
+% Nested example
+\begin{revbadge}{3}{rev:math_fix}
     We update our primary objective function to include a regularization parameter $\lambda$. The new optimization problem is formulated as follows:
 
-    \begin{revbadge}{4.1}{rev:math_fix_2}
+    % Inner badge
+    \begin{revbadge}[colframe=redx, colback=redxb]{Wrong equation!}{rev:math_fix_2}
     \begin{equation}
         \min_{\theta} \mathcal{L}(\theta) + \lambda \|\theta\|_2^2
     \end{equation}
@@ -48,7 +93,30 @@ The environment naturally preserves mathematical structures inside columns witho
 
 As demonstrated above, the mathematical rigor is preserved, and the box automatically scales to fit perfectly within a single column.
 
+\subsection{Multi-line Badges}
+\noindent
+\textbf{Environment used:} \texttt{revbadgemultiline} (new in version 1.0)
+
+Nam convallis, nisl eu luctus interdum, erat sapien imperdiet enim, sed rhoncus turpis turpis eget massa. Ut faucibus ex non odio iaculis, vel semper odio consectetur. Nunc lectus orci
+
+% Multi-line badge example
+\noindent
+\textbf{Command:} \path|\begin{revbadgemultiline}[colframe=purp, colback=purpb]{This is a substantial revision ...}{rev:r2c1} ... \end{revbadgemultiline}|
+\begin{revbadgemultiline}[colframe=purp, colback=purpb]{    This is a substantial revision that requires re-analysis of the data.}{rev:r2c1}
+    The reviewer has raised several important points about methodology,
+    statistical power, and interpretation of results. We need to:
+    \begin{itemize}
+        \item Re-run the analysis with additional controls
+        \item Provide sensitivity analyses
+        \item Clarify the theoretical framework
+    \end{itemize}
+    We have addressed each point comprehensively in the revised manuscript.
+\end{revbadgemultiline}
+
 \subsection{Table Integration}
+\noindent
+\textbf{Command:} \path|\revbadgeinline| inside a \texttt{tabular} cell.
+
 Reviewer 1 requested updated evaluation metrics in our comparative analysis. As shown in Table~\ref{tab:metrics}, we can seamlessly embed tracking badges directly inside tabular environments to point out specific data corrections.
 
 \begin{table}[htbp]
@@ -58,13 +126,28 @@ Reviewer 1 requested updated evaluation metrics in our comparative analysis. As 
 \begin{tabular}{lccc}
 \hline
 \textbf{Method} & \textbf{Accuracy (\%)} & \textbf{F1-Score} & \textbf{Latency (ms)} \\ \hline
-ResNet-50       & 76.2                   & 0.74              & 12.5                  \\
-ViT-Base        & 81.4                   & 0.80              & 24.1                  \\
-\textbf{Ours}   & \revbadgeinline[colframe=cyan, colback=cyanb]{1.1}{rev:table_update}{\textbf{84.9}} & \textbf{0.83}     & \textbf{18.4}         \\ \hline
+ResNet-50       & 76.2                    & 0.74              & 12.5                  \\
+ViT-Base        & 81.4                    & 0.80              & 24.1                  \\
+\textbf{Ours}   & \revbadgeinline[colframe=redx, colback=redxb]{Inaccurate!}{rev:table_update}{\textbf{84.9}} & \textbf{0.83}     & \textbf{18.4}         \\ \hline
 \end{tabular}
 \end{table}
 
+\subsection{Highlighting figure captions}
+You can use inline hightlight badge in the captions
+% Figure with badge in caption
+\begin{figure}[htbp]
+\centering
+\fbox{\rule{0.6\columnwidth}{2.5cm}} % dummy image
+\caption{Performance comparison of our method \revbadgeinline[colframe=orng, colback=orngb]{?}{rev:fig_caption}{6} against state-of-the-art baselines.}
+\label{fig:performance}
+\end{figure}
+\noindent
+\textbf{Command used in caption:} \path|\revbadgeinline[colframe=orng, colback=orngb]{A1}{rev:fig_caption}{\textbf{Ours}}|
+
 \subsection{Custom Layout Formatting}
+\noindent
+\textbf{Command:} \texttt{revbadge} with extra options \texttt{top=4pt, bottom=4pt}.
+
 Reviewer 2 required an explicit declaration of our hardware execution environment:
 \begin{revbadge}[colframe=ylow, colback=ylowb, top=4pt, bottom=4pt]{Hardware Specs}{rev:twolines}
     All evaluations executed natively on an NVIDIA H100 GPU cluster. \\
@@ -72,6 +155,43 @@ Reviewer 2 required an explicit declaration of our hardware execution environmen
 \end{revbadge}
 
 \section{Cross-Referencing Tracker}
-Because the package automatically binds internal counters to \texttt{cleveref}, referencing your edits is seamless. For example, \verb|\cref{rev:short}| outputs as \cref{rev:short}, \verb|\cref{rev:baseline_clarity}| yields \cref{rev:baseline_clarity}, the tabular adjustment \verb|\cref{rev:table_update}| points to \cref{rev:table_update}, and the nested math formula \verb|\cref{rev:math_fix_2}| maps cleanly to \cref{rev:math_fix_2}.
+Because the package automatically binds internal counters to \texttt{cleveref}, referencing your edits is seamless and context-aware. \texttt{revbadge} intelligently distinguishes between independent highlights and those nested within structural elements: if an edit is placed within a section, \texttt{\textbackslash cref} will resolve to that section’s location, whereas standalone edits reference their specific badge identifier.
+
+For example, \verb|\cref{rev:short}| outputs as \cref{rev:short} (a standalone badge), while \verb|\cref{rev:baseline_clarity}| directs the reader to the structural location \cref{rev:baseline_clarity}. Similarly, the tabular adjustment \verb|\cref{rev:table_update}| points to \cref{rev:table_update}, and the nested math formula \verb|\cref{rev:math_fix_2}| maps cleanly to its containing section, \cref{rev:math_fix_2}.
+Additionally, the figure caption badge \verb|\cref{rev:fig_caption}| resolves to \cref{rev:fig_caption}, and the multi‑line badge \verb|\cref{rev:r2c1}| is shown as \cref{rev:r2c1}.
+
+\section{Color Palette}
+The package defines 24 unique color themes, each with a distinct frame color and a matching light background.
+You can use any of these names as the \texttt{colframe} and \texttt{colback} options for the environments and the inline command. The \texttt{colback} colours share the same name as the frame name, but with a letter \texttt{b} appended. i.e., blue background would have the colour of the \texttt{blueb}
+
+\noindent
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}} l c c @{}}
+  \textbf{Name} & \textbf{Frame} & \textbf{Background} \\[2pt]
+  \hline
+  blue   & \fcolorbox{blue}{blue}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{blueb}{blueb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  orng   & \fcolorbox{orng}{orng}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{orngb}{orngb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  gren   & \fcolorbox{gren}{gren}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{grenb}{grenb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  purp   & \fcolorbox{purp}{purp}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{purpb}{purpb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  grey   & \fcolorbox{grey}{grey}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{greyb}{greyb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  ylow   & \fcolorbox{ylow}{ylow}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{ylowb}{ylowb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  cyan   & \fcolorbox{cyan}{cyan}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{cyanb}{cyanb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  redx   & \fcolorbox{redx}{redx}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{redxb}{redxb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  pink   & \fcolorbox{pink}{pink}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{pinkb}{pinkb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  brow   & \fcolorbox{brow}{brow}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{browb}{browb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  lime   & \fcolorbox{lime}{lime}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{limeb}{limeb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  teal   & \fcolorbox{teal}{teal}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{tealb}{tealb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  sage   & \fcolorbox{sage}{sage}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{sageb}{sageb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  plum   & \fcolorbox{plum}{plum}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{plumb}{plumb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  rust   & \fcolorbox{rust}{rust}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{rustb}{rustb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  jade   & \fcolorbox{jade}{jade}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{jadeb}{jadeb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  gold   & \fcolorbox{gold}{gold}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{goldb}{goldb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  navy   & \fcolorbox{navy}{navy}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{navyb}{navyb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  wine   & \fcolorbox{wine}{wine}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{wineb}{wineb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  clay   & \fcolorbox{clay}{clay}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{clayb}{clayb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  aqua   & \fcolorbox{aqua}{aqua}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{aquab}{aquab}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  char   & \fcolorbox{char}{char}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{charb}{charb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  rose   & \fcolorbox{rose}{rose}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{roseb}{roseb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+  sand   & \fcolorbox{sand}{sand}{\rule{0pt}{1.2ex}\hspace{1.5em}} & \fcolorbox{sandb}{sandb}{\rule{0pt}{1.2ex}\hspace{1.5em}} \\
+\end{tabular*}
 
 \end{document}

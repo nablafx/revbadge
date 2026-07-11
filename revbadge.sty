@@ -1,5 +1,5 @@
-% Version: 1.0
-% Updated 10/07/2026
+% Version: 1.1
+% Updated 11/07/2026
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{revbadge}[Custom Highlighting for Academic Revisions]
@@ -55,6 +55,21 @@
     attach boxed title to top left={xshift=8pt, yshift=-10pt, yshifttext=-5pt},
     fonttitle=\bfseries\small\sffamily, coltitle=white, title={#2},
     boxed title style={boxrule=0pt, arc=3pt, top=3pt, bottom=3pt, left=6pt, right=6pt, colback=tcbcolframe, colframe=tcbcolframe},
+    after upper={\label{#3}}
+}
+
+% --- Multi-line badge environment (smaller text) ---
+\newtcolorbox[use counter=revbadge]{revbadgemultiline}[3][colframe=blue, colback=blueb]{%
+    enhanced, breakable, before skip=15pt, after skip=15pt,
+    boxrule=0.5pt, leftrule=4pt, arc=4pt, top=12pt, bottom=10pt, left=10pt, right=10pt,
+    #1,
+    attach boxed title to top left={xshift=8pt, yshift=-10pt, yshifttext=-5pt},
+    fonttitle=\footnotesize\bfseries\sffamily,   % smaller title font
+    coltitle=white,
+    title={\parbox{0.6\linewidth}{#2}},          % allows line breaks in the label
+    boxed title style={boxrule=0pt, arc=3pt, top=3pt, bottom=3pt, left=6pt, right=6pt,
+                       colback=tcbcolframe, colframe=tcbcolframe},
+    fontupper=\footnotesize,                     % smaller body text
     after upper={\label{#3}}
 }
 
