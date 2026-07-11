@@ -33,7 +33,7 @@ Each color uses a 4-letter identifier for the frame boundary/badge (`XXXX`) and 
 
 ## 🛠️ Usage
 
-### 1. The Block Container (`revbadge` Environment)
+### 1. The Block Container (`revbadge` and `revbadgemultiline` Environment)
 Designed for multi-line edits, math, figures, lists, or large rewritten paragraphs.
 
 #### Syntax Template:
