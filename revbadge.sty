@@ -1,5 +1,5 @@
-% Version: 1.1
-% Updated 11/07/2026
+% Version: 1.2
+% Updated 19/08/2026
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{revbadge}[Custom Highlighting for Academic Revisions]
@@ -7,43 +7,44 @@
 \RequirePackage{xcolor}
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins, breakable}
+\RequirePackage{soul} % Handles clean, multi-line text wrapping highlights
 \RequirePackage{hyperref}
 \RequirePackage{cleveref}
 
 % =========================================================================
 % revbadge: COLOR PALETTE (24 Unique Themes)
 % =========================================================================
-\definecolor{blue}{HTML}{007399}  \definecolor{blueb}{HTML}{F2F9FC}
-\definecolor{orng}{HTML}{D9822B}  \definecolor{orngb}{HTML}{FFFBF2}
-\definecolor{gren}{HTML}{2F855A}  \definecolor{grenb}{HTML}{F0FDF4}
-\definecolor{purp}{HTML}{6B46C1}  \definecolor{purpb}{HTML}{F5F3FF}
-\definecolor{grey}{HTML}{4A5568}  \definecolor{greyb}{HTML}{F7FAFC}
-\definecolor{ylow}{HTML}{B7950B}  \definecolor{ylowb}{HTML}{FEF9E7}
-\definecolor{cyan}{HTML}{00A3C4}  \definecolor{cyanb}{HTML}{E6FCFF}
-\definecolor{redx}{HTML}{C53030}  \definecolor{redxb}{HTML}{FFF5F5}
-\definecolor{pink}{HTML}{B83280}  \definecolor{pinkb}{HTML}{FFF5F7}
-\definecolor{brow}{HTML}{845EF7}  \definecolor{browb}{HTML}{F3F0FF}
-\definecolor{lime}{HTML}{5C940E}  \definecolor{limeb}{HTML}{F4FCE3}
-\definecolor{teal}{HTML}{0C8599}  \definecolor{tealb}{HTML}{E3FAFC}
-\definecolor{sage}{HTML}{708090}  \definecolor{sageb}{HTML}{F0F2F5}
-\definecolor{plum}{HTML}{862E9C}  \definecolor{plumb}{HTML}{FAEDFF}
-\definecolor{rust}{HTML}{C92A2A}  \definecolor{rustb}{HTML}{FFE3E3}
-\definecolor{jade}{HTML}{087F5B}  \definecolor{jadeb}{HTML}{E6FCF5}
-\definecolor{gold}{HTML}{C17400}  \definecolor{goldb}{HTML}{FFF9DB}
-\definecolor{navy}{HTML}{1A365D}  \definecolor{navyb}{HTML}{EBF8FF}
-\definecolor{wine}{HTML}{721C24}  \definecolor{wineb}{HTML}{F8D7DA}
-\definecolor{clay}{HTML}{A26442}  \definecolor{clayb}{HTML}{F9F1EC}
-\definecolor{aqua}{HTML}{0B7285}  \definecolor{aquab}{HTML}{E3FAFC}
-\definecolor{char}{HTML}{2D3748}  \definecolor{charb}{HTML}{EDF2F7}
-\definecolor{rose}{HTML}{9C36B5}  \definecolor{roseb}{HTML}{FDF2FF}
-\definecolor{sand}{HTML}{877A5E}  \definecolor{sandb}{HTML}{F6F5F2}
+\definecolor{blue}{HTML}{007399}  \definecolor{blueb}{HTML}{D8EEF5}
+\definecolor{orng}{HTML}{D9822B}  \definecolor{orngb}{HTML}{FCEFD8}
+\definecolor{gren}{HTML}{2F855A}  \definecolor{grenb}{HTML}{D6F5E3}
+\definecolor{purp}{HTML}{6B46C1}  \definecolor{purpb}{HTML}{E7E0FA}
+\definecolor{grey}{HTML}{4A5568}  \definecolor{greyb}{HTML}{E2E8F0}
+\definecolor{ylow}{HTML}{B7950B}  \definecolor{ylowb}{HTML}{F9EFC7}
+\definecolor{cyan}{HTML}{00A3C4}  \definecolor{cyanb}{HTML}{C4F4FC}
+\definecolor{redx}{HTML}{C53030}  \definecolor{redxb}{HTML}{FCDADA}
+\definecolor{pink}{HTML}{B83280}  \definecolor{pinkb}{HTML}{FCDAE9}
+\definecolor{brow}{HTML}{845EF7}  \definecolor{browb}{HTML}{E2D9FC}
+\definecolor{lime}{HTML}{5C940E}  \definecolor{limeb}{HTML}{E3F8B3}
+\definecolor{teal}{HTML}{0C8599}  \definecolor{tealb}{HTML}{C5F2F7}
+\definecolor{sage}{HTML}{708090}  \definecolor{sageb}{HTML}{D9E0E8}
+\definecolor{plum}{HTML}{862E9C}  \definecolor{plumb}{HTML}{F2D4FC}
+\definecolor{rust}{HTML}{C92A2A}  \definecolor{rustb}{HTML}{FCC8C8}
+\definecolor{jade}{HTML}{087F5B}  \definecolor{jadeb}{HTML}{C5F7E7}
+\definecolor{gold}{HTML}{C17400}  \definecolor{goldb}{HTML}{FCEBB3}
+\definecolor{navy}{HTML}{1A365D}  \definecolor{navyb}{HTML}{C7E6FA}
+\definecolor{wine}{HTML}{721C24}  \definecolor{wineb}{HTML}{F5C2C7}
+\definecolor{clay}{HTML}{A26442}  \definecolor{clayb}{HTML}{F0DFC2}
+\definecolor{aqua}{HTML}{0B7285}  \definecolor{aquab}{HTML}{C5F2F7}
+\definecolor{char}{HTML}{2D3748}  \definecolor{charb}{HTML}{D1D9E0}
+\definecolor{rose}{HTML}{9C36B5}  \definecolor{roseb}{HTML}{F6D4FC}
+\definecolor{sand}{HTML}{877A5E}  \definecolor{sandb}{HTML}{E6E3DB}
 
 % =========================================================================
 % revbadge: ENVIRONMENT DEFINITION
 % =========================================================================
 \newcounter{revbadge}
 
-% --- print "highlight"  in the PDF text ---
+% --- print "highlight" in the PDF text ---
 \crefname{revbadge}{highlight}{highlights}
 \Crefname{revbadge}{Highlight}{Highlights}
 
@@ -73,8 +74,9 @@
     after upper={\label{#3}}
 }
 
-% --- Inline Macro with Highlighted Label Badge ---
-\newcommand{\revbadgeinline}[4][colframe=blue, colback=blueb]{%
+
+% --- word badge ---
+\newcommand{\wordbadge}[4][colframe=blue, colback=blueb]{%
     \refstepcounter{revbadge}%
     \tcbox[enhanced, on line, boxrule=0.5pt, arc=3pt,
            top=0pt, bottom=0pt, left=0pt, right=4pt,
@@ -82,4 +84,58 @@
            after upper={\label{#3}}]{%
            \colorbox{tcbcolframe}{\color{white}\bfseries\sffamily\scriptsize\strut\,\,#2\,\,}\,\,\textbf{#4}%
     }%
+}
+
+
+% =========================================================================
+% revbadge: INLINE IMPLEMENTATION
+% =========================================================================
+\makeatletter
+
+
+\soulregister\cref7
+\soulregister\Cref7
+\soulregister\cite7
+\soulregister\textbf7
+\soulregister\textit7
+\soulregister\texttt7
+\soulregister\color7
+\soulregister\ref7
+
+\pgfkeys{
+  /revinline/.is family,
+  /revinline,
+  colframe/.store in=\revinlineframe,
+  colback/.store in=\revinlineback,
+  .unknown/.code={}
+}
+
+
+
+
+\DeclareRobustCommand{\revbadgeinline}[4][colframe=blue,colback=blueb]{%
+    \refstepcounter{revbadge}%
+    \label{#3}%
+    \begingroup
+    % Set fallback defaults
+    \def\revinlineframe{blue}%
+    \def\revinlineback{blueb}%
+    % Dynamically parse options
+    \pgfkeys{/revinline, #1}%
+    %
+    % 1. Clean up spacing before the badge starts
+    \leavevmode\unskip\hspace{0.25em}%
+    %
+    % 2. Render the Badge + Colored Extension Space
+    \sethlcolor{\revinlineframe}%
+    % Adding \hspace{0.45em} inside the mbox extends the solid badge background color to the right
+    \hl{\mbox{\bfseries\sffamily\scriptsize\color{white}\,\strut#2\,\hspace{0.45em}}}%
+    %
+    % 3. Seamless transition to the highlighted text (zero gap)
+    \nobreak\hspace{-0.05em}%
+    %
+    % 4. Render the Highlight Track (perfectly isolated default text color)
+    \sethlcolor{\revinlineback}%
+    \hl{#4}%
+    \endgroup
 }

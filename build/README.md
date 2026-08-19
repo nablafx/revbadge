@@ -1,17 +1,22 @@
 # `revbadge`
-Multi-color highlight builder featuring block and inline revision badges.
+Multi-color highlight builder featuring block, inline, and word-level revision badges.
 
-**Version:** `1.1`  
-**Release Date:** `11/07/2026`  
+**Version:** `1.2`  
+**Release Date:** `19/08/2026`  
 
 ---
 
-The revbadge package provides an elegant, column-safe framework designed specifically for tracking major revisions and minor modifications in academic manuscripts. This package can also be used as a handy highlighting tool.
+The `revbadge` package provides an elegant, column-safe framework designed specifically for tracking major revisions and minor modifications in academic manuscripts. This package can also be used as a versatile document highlighting tool.
 
-The `revbadge` block environment for handling long paragraphs, multi-line equations, lists, and sections; `revbadgemultiline` shares the same propose but allow you to build multi-line badge label;  and the `\revbadgeinline` macro for executing tight, mid-sentence word corrections without disrupting standard line spacing. Both components feature a dynamic colored badge mechanism that labels modifications on the fly.
+### Key Features
+* **`revbadge` block environment:** Designed for long paragraphs, multi-line equations, lists, and rewritten sections.
+* **`revbadgemultiline` block environment:** Shares the block feature set while permitting multi-line text inside the badge label itself.
+* **`\wordbadge` macro:** A compact, self-contained on-line badge for quick metrics, tags, or word-level annotations without extended background track highlighting.
+* **`\revbadgeinline` macro:** Executes tight, mid-sentence text corrections with soft-wrapping background highlight tracks without disrupting standard line spacing.
 
-The package provides native, automated integration with hyperref and cleveref under a unified "highlight" reference counter. Additionally, revbadge comes pre-packaged with a vibrant, 24-theme color palette accessible via highly memorable 4-letter macro color identifiers (e.g., blue, gren, orng, purp, ylow, grey).
+All components feature native, automated integration with `hyperref` and `cleveref` under a unified "highlight" reference counter, alongside a vibrant 24-theme color palette.
 
+---
 
 ## Color Scheme Palette (24 Themes)
 
@@ -33,38 +38,33 @@ Each color uses a 4-letter identifier for the frame boundary/badge (`XXXX`) and 
 
 ## 🛠️ Usage
 
-### 1. The Block Container (`revbadge` and `revbadgemultiline` Environment)
+### 1. Block Containers (`revbadge` and `revbadgemultiline`)
 Designed for multi-line edits, math, figures, lists, or large rewritten paragraphs.
 
-#### Syntax Template:
+#### Standard Block (`revbadge`)
 ```latex
 \begin{revbadge}[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Badge Title}{label:unique_key}
     Content space...
 \end{revbadge}
 ```
-
-Sometimes you might need to write some long multi-line texts in the badge label, in that case, use 
-
+#### Multi-line Label Block (`revbadgemultiline`)
+Use this when you need to write longer reviewer feedback or comments directly in the badge label:
 ```latex
-\begin{revbadgemultiline}[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Some very very very very long texts}{label:unique_key}
+\begin{revbadgemultiline}[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Detailed reviewer query text...}{label:unique_key}
     Content space...
 \end{revbadgemultiline}
 ```
 
-
-### 2. Micro-Edit Snippets (`\revbadgeinline` Command)
-Designed to highlight mid-paragraph text modifications, tiny vocabulary updates, or localized mathematical symbols without breaking text wrapping or introducing ugly vertical spacing gaps.
-
-The first required argument acts as the label string inside a high-visibility, solid-colored tag badge.
-
-#### Syntax Template:
+### 2. Compact Word Badges (`\wordbadge`)
+Designed for tagging individual words, parameter updates, or standalone labels directly on the text line without extra background track highlighting.
 ```latex
-\revbadgeinline[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Badge Tag Label}{label:unique_key}{Modified Inline Text}
+\wordbadge[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Badge Tag}{label:unique_key}{Word or Phrase}
 ```
 
-### 3. Refer the highlight block label
-using `\cref{}`
-#### Syntax Template:
+### 3.Micro-Edit Snippets (`\revbadgeinline`)
+Designed to highlight mid-paragraph text modifications, vocabulary updates, or localized mathematical symbols with a continuous background highlight track while preserving paragraph wrapping.
 ```latex
-\cref{rev:baseline_clarity}
+\revbadgeinline[colframe=FRAME_COLOR, colback=BACKGROUND_COLOR]{Badge Tag}{label:unique_key}{Modified Inline Text}
 ```
+
+### 4.Cross-Referencing Highlights (\cref) (`\revbadgeinline`)
