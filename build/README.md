@@ -1,8 +1,8 @@
 # `revbadge`
 Multi-color highlight builder featuring block, inline, and word-level revision badges.
 
-**Version:** `1.2`  
-**Release Date:** `19/08/2026`  
+**Version:** `1.2.1`  
+**Release Date:** `29/08/2026`  
 
 ---
 
