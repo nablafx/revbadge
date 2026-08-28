@@ -1,5 +1,5 @@
-% Version: 1.2
-% Updated 19/08/2026
+% Version: 1.2.1
+% Updated 29/08/2026
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{revbadge}[Custom Highlighting for Academic Revisions]
@@ -78,7 +78,7 @@
 % --- word badge ---
 \newcommand{\wordbadge}[4][colframe=blue, colback=blueb]{%
     \refstepcounter{revbadge}%
-    \tcbox[enhanced, on line, boxrule=0.5pt, arc=3pt,
+    \tcbox[enhanced, on line, boxrule=0.5pt, arc=0pt,
            top=0pt, bottom=0pt, left=0pt, right=4pt,
            boxsep=0pt, fontupper=\small, #1,
            after upper={\label{#3}}]{%
